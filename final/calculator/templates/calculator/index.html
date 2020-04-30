@@ -1,5 +1,63 @@
 {% extends "calculator/layout.html" %}
+{% load static %}
 
 {% block body %}
+<style>
+body {
+  background-color: #52ACFF;
+  background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+ }
 
+.mainblock {
+    position: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 30px 0;
+    width: 100%;
+    max-width: 500px;
+    z-index: 1;
+    margin: 80px auto;
+    align-self: center;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+
+/* increase header size after 600px */
+@media all and (min-width: 600px) {
+    .mainblock h1 {
+        font-size: 60px;
+   }
+
+}
+</style>
+
+<div class="mainblock">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading text-white">Carbon Calculator</h1>
+    <p class="lead">
+      <div class="input-group mb-3">
+  <input id="inputDistance" type="number" oninput="carbonConverter(valNum=this.value)"  class="form-control" placeholder="Travel Distance" type="number">
+      <div class="input-group-append">
+    <select class="input-group-text" id="basic-addon2" oninput="unitConverter()">
+        <option value="miles">Miles</option>
+        <option value="km">KM</option>
+    </select>
+  </div>
+</div>
+    </p>
+    <p class="lead">
+      <a href="#" class="btn btn-lg btn-secondary">Your carbon footprint for this trip is (<span id="outputCarbon"></span>) KG</a>
+    </p>
+
+  </main>
+    </div>
+</div>
+
+<a href="https://carbonfund.org/wp-content/uploads/2018/09/emission-factors_mar_2018_0.pdf">Reference</a>
+<script src="{% static 'calculator/scripts.js' %}"></script>
+
+</script>
 {% endblock %}
