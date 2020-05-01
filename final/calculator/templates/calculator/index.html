@@ -38,7 +38,30 @@ body {
   <main role="main" class="inner cover">
     <h1 class="cover-heading text-white">Carbon Calculator</h1>
     <p class="lead">
-      <div class="input-group mb-3">
+
+        <div class="container">
+            <div class="row">
+                <div  class="col">
+                    <label>Departure</label>
+                    <input list="departure-options" id="departure--choice" name="departure-choice" >
+                    <datalist id="departure-options">
+                        {% for airport in airports %}
+                        <option value="{{airport.airportName}},{{airport.cityName}},{{airport.countryName}}">  {{airport.airportName}},{{airport.cityName}},{{airport.countryName}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col">
+                    <label>Arrival </label>
+                    <input list="arrival-options" id="arrival-choice" name="arrival--choice" />
+                    <datalist id="arrival-options">
+                        {% for airport in airports %}
+                        <option value="{{airport.airportName}},{{airport.cityName}},{{airport.countryName}}">  {{airport.airportName}},{{airport.cityName}},{{airport.countryName}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+
+      <div class="input-group mb-3" style="padding-top: 5%">
   <input id="inputDistance" type="number" oninput="carbonConverter(valNum=this.value)"  class="form-control" placeholder="Travel Distance" type="number">
       <div class="input-group-append">
     <select class="input-group-text" id="basic-addon2" oninput="unitConverter()">
@@ -51,12 +74,15 @@ body {
     <p class="lead">
       <a href="#" class="btn btn-lg btn-secondary">Your carbon footprint for this trip is (<span id="outputCarbon"></span>) KG</a>
     </p>
+      {% if user.is_authenticated %}
+      <a href="{% url 'login' %}">Save This Entry</a>
+      {% else %}
+      <a href="{% url 'login' %}">Log In and Save This Entry</a>
+      {% endif %}
 
   </main>
     </div>
 </div>
-
-<a href="https://carbonfund.org/wp-content/uploads/2018/09/emission-factors_mar_2018_0.pdf">Reference</a>
 <script src="{% static 'calculator/scripts.js' %}"></script>
 
 </script>

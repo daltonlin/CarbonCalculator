@@ -23,7 +23,7 @@ function unitConverter() {
 function carbonConverter(valNum) {
     var x = valNum;
 
-    if (x<300){
+    if (0<x<300){
         document.getElementById("outputCarbon").innerHTML = Math.round(x * 0.225);
     }
     if (x>=300 & x<2300){
@@ -31,5 +31,8 @@ function carbonConverter(valNum) {
     }
     if (x>=2300) {
         document.getElementById("outputCarbon").innerHTML = Math.round(x * 0.166);
+    }
+    if (x<0) {
+       document.getElementById("outputCarbon").innerHTML = 0;
     }
 }

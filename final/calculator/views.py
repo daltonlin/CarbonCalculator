@@ -1,14 +1,32 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+import json
+import os.path
+
 
 from .models import User
 
 
 def index(request):
-    return render(request, "calculator/index.html")
+
+    #json_data = '/static/calculator/airport_data/data.json'
+    #airports_data = json.loads(json_data)
+    #json_data.close()
+
+
+    f_path = os.path.abspath("calculator/static/calculator/airport_data/data.json")
+
+    with open(f_path) as json_file:
+        json_data = json.load(json_file)
+
+    airports_data = json_data
+
+    return render(request, "calculator/index.html", {
+        "airports": airports_data,
+    })
 
 
 def login_view(request):
@@ -61,3 +79,9 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "calculator/register.html")
+
+
+
+
+
+
