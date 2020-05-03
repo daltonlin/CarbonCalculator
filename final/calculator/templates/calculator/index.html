@@ -43,19 +43,22 @@ body {
             <div class="row">
                 <div  class="col">
                     <label>Departure</label>
-                    <input list="departure-options" id="departure--choice" name="departure-choice" >
+
+                    <input list="departure-options" id="departure-choice" name="departure-choice" oninput="getLocData()">
                     <datalist id="departure-options">
                         {% for airport in airports %}
-                        <option value="{{airport.airportName}},{{airport.cityName}},{{airport.countryName}}">  {{airport.airportName}},{{airport.cityName}},{{airport.countryName}}</option>
+                        <option value="{{airport.airportName}}" data-lat1="{{airport.latitude}}" data-lon1="{{airport.longitude}}">{{airport.cityName}},{{airport.countryName}}</option>
                         {% endfor %}
                     </datalist>
+
+
                 </div>
                 <div class="col">
                     <label>Arrival </label>
-                    <input list="arrival-options" id="arrival-choice" name="arrival--choice" />
+                    <input list="arrival-options" id="arrival-choice" name="arrival-choice" oninput="getLocData()">
                     <datalist id="arrival-options">
                         {% for airport in airports %}
-                        <option value="{{airport.airportName}},{{airport.cityName}},{{airport.countryName}}">  {{airport.airportName}},{{airport.cityName}},{{airport.countryName}}</option>
+                        <option value="{{airport.airportName}}"  data-lat2="{{airport.latitude}}" data-lon2="{{airport.longitude}}">{{airport.cityName}},{{airport.countryName}}</option>
                         {% endfor %}
                     </datalist>
                 </div>
@@ -83,7 +86,6 @@ body {
   </main>
     </div>
 </div>
-<script src="{% static 'calculator/scripts.js' %}"></script>
 
-</script>
+
 {% endblock %}
