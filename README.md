@@ -8,7 +8,7 @@ In recent years, climate change and global warming become more extreme and pose 
 According to a report by [IATA](https://www.iata.org/contentassets/c4f9f0450212472b96dac114a06cc4fa/fact-sheet-climate-change.pdf), 
 the global aviation industry accounts for 2% of all human source carbon dioxide emissions, and one of the highest among transport methods in terms of per passenger mile emission. 
 With environmental awareness on the rise, frequent air travelers are seeking to counterbalance their carbon footprint by purchasing carbon offset credit. 
-As a frequent flyer traveling over 100k miles each year, I hoped to design a web app to calculate and record my travel history, so I could better track my carbon emissions and enable me to purchase a proper amount of credit to offset my footprint.   
+As a frequent flyer traveling over 100k miles each year, I hoped to design a web app to calculate and record my travel history and to enable me to better track my carbon emissions and purchase a proper amount of credit to offset my footprint.   
 
 ## Installation
 
@@ -39,9 +39,9 @@ To start the Django web server, run:
 python manage.py runserver
 ```
 
-##Usage
+## Usage
 
-A user can search departure and arrival airports, and travel distance and carbon footprint will be calculated and display to the user. 
+A user can search departure and arrival airports, and travel distance and carbon footprint will be calculated and displayed to the user. 
 The search feature currently supports search by airport name, and location information (e.g. city name, county name.) 
 One of the popular identifiers, IATA 3 letter airport code is not currently supported due to licensing requirements.
 The aerodrome location dataset is obtained from [International Civil Aviation Organization's public database](https://www.icao.int/safety/iStars/Pages/API-Data-Service.aspx).
@@ -66,13 +66,13 @@ The backend API is written in Python and can be found in:
 final/calculator/views.py
 ```
 
-And the database is managed by Django models. The models can be found in:
+The database is managed by Django models. The models can be found in:
 
 ```bash
 final/calculator/models.py
 ```
 
-##References
+## References
 
 In addition to the above-mentioned references, the aerodrome location dataset from [International Civil Aviation Organization's public database](https://www.icao.int/safety/iStars/Pages/API-Data-Service.aspx)
 and formulation for distance calculation between latitude/longitude points from [Movable Type Ltd.](https://www.movable-type.co.uk/scripts/latlong.html).
@@ -81,4 +81,4 @@ The emission calculation for carbon dioxide utilizes a formulation from [the Uni
 
 The user login/logout and register features are based on [Harvard University CSCI E-33a](https://cs50.harvard.edu/extension/web/2020/spring/)'s course homework projects.
 
-These references can be also found on the app's references page. 
+These references can be found git on the app's references page as well. 
