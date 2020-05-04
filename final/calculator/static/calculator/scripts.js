@@ -1,3 +1,8 @@
+/**
+ * Mobile-responsive navigation bar.
+ *
+ * @link layout.html
+ */
 function myNavbar() {
 
   var x = document.getElementById("Topnav");
@@ -8,7 +13,11 @@ function myNavbar() {
   }
 }
 
-
+/**
+ * Check unit and convert units.
+ *
+ * Check the user input unit is km or miles, and forward data only in miles to the carbonConverter() function.
+ */
 function unitConverter() {
 
   var unit = document.getElementById("basic-addon2").value;
@@ -22,6 +31,13 @@ function unitConverter() {
   }
 }
 
+/**
+ * Calculate the carbon footprint based on user input.
+ *
+ * The formulation is provided by EPA, please check the references page.
+ *
+ * @param valNum  Travel distance in miles.
+ */
 function carbonConverter(valNum) {
 
     var x = valNum;
@@ -40,7 +56,11 @@ function carbonConverter(valNum) {
     }
 }
 
-
+/**
+ * Get airport locations information from the dataset based on user input.
+ *
+ * Get latitude/longitude coordinates based on the user's selected locations.
+ */
 function getLocData() {
 
     var departure_choice = document.getElementById("departure-choice").value;
@@ -54,7 +74,16 @@ function getLocData() {
     distance(lat1,lon1,lat2,lon2);
 }
 
-
+/**
+ * Calculate the travel distance in miles based on user input.
+ *
+ * The formulation is provided by Movable Type Ltd., please check the references page.
+ *
+ * @param latitude of the departure location.
+ * @param longitude of the departure location.
+ * @param latitude of the arrival location.
+ * @param longitude of the arrival location.
+ */
 function distance(lat1,lon1,lat2,lon2) {
 
     var R = 6371;
@@ -70,12 +99,18 @@ function distance(lat1,lon1,lat2,lon2) {
 	carbonConverter(d);
 }
 
+/**
+ * Send data to the backend API.
+ *
+ * Acquire user's input data and send to the backend API.
+ */
 function saveEntry() {
 
     // check the unit of the input
     var unit = document.getElementById("basic-addon2").value;
     var num = document.getElementById("inputDistance").value;
 
+    // Convert the unit accordingly
     if (unit === 'miles') {
         d_miles = num ;
         d_km = num * 1.60934;

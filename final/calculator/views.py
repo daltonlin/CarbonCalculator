@@ -12,6 +12,7 @@ from .models import User, Trip
 
 
 def index(request):
+    # load airports locations dataset
     f_path = os.path.abspath("calculator/static/calculator/airport_data/data.json")
 
     with open(f_path) as json_file:
@@ -40,6 +41,7 @@ def save(request):
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 
+    # save user entry
     elif request.method == "POST":
         data = json.loads(request.body)
 
