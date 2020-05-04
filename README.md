@@ -26,11 +26,10 @@ pip install django
 pipenv shell
 ```
 
-To start the app, first, make migrations for the calculator app and apply migrations to the database.
+Make sure the app is on the final directory, if not:
 
 ```bash
-python manage.py makemigrations calculator
-python manage.py migrate
+cd final
 ```
 
 To start the Django web server, run:
