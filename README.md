@@ -81,4 +81,4 @@ The emission calculation for carbon dioxide utilizes a formulation from [the Uni
 
 The user login/logout and register features are based on [Harvard University CSCI E-33a](https://cs50.harvard.edu/extension/web/2020/spring/)'s course homework projects.
 
-These references can be found git on the app's references page as well. 
+These references can be found on the app's references page as well. 
