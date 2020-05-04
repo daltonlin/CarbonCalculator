@@ -59,6 +59,7 @@ final/calculator/static/calculator/scripts.js
 
 Furthermore, the user can elect to save the calculation to their personal profile. After each calculation, the user can click on "Save the Entry" button to save the calculation, 
 if the user is not login, it will take the user to the login page. 
+When the user clicks on his/her user name, it will take them to the user's profile page, and the user will be able to check his/her travel history.
 
 The backend API is written in Python and can be found in:
 
