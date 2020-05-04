@@ -8,13 +8,10 @@ import os.path
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-
 from .models import User, Trip
 
 
 def index(request):
-
-
     f_path = os.path.abspath("calculator/static/calculator/airport_data/data.json")
 
     with open(f_path) as json_file:
@@ -40,7 +37,6 @@ def profile_view(request, user_name):
 @csrf_exempt
 @login_required
 def save(request):
-
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 
@@ -48,18 +44,17 @@ def save(request):
         data = json.loads(request.body)
 
         trip = Trip(
-        user = request.user,
-        departure_loc = data.get("departure_loc"),
-        arrival_loc = data.get("arrival_loc"),
-        result = data.get("result"),
-        distance_miles = data.get("distance_miles"),
-        distance_km = data.get("distance_km"),
+            user=request.user,
+            departure_loc=data.get("departure_loc"),
+            arrival_loc=data.get("arrival_loc"),
+            result=data.get("result"),
+            distance_miles=data.get("distance_miles"),
+            distance_km=data.get("distance_km"),
         )
         trip.save()
         return JsonResponse({"message": "Trip saved successfully."}, status=201)
     else:
         return JsonResponse({"error": "Oops! Something went wrong"}, status=400)
-
 
 
 def ref_view(request):
@@ -116,9 +111,3 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "calculator/register.html")
-
-
-
-
-
-
