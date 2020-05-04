@@ -10,7 +10,7 @@
       <th scope="col-lg">Origination</th>
       <th scope="col-lg">Destination</th>
       <th scope="col-lg">Distance</th>
-      <th scope="col-lg">Carbon Footprint(CO2/KG)</th>
+      <th scope="col-lg">Carbon Footprint(KG CO2)</th>
 
     </tr>
   </thead>
@@ -20,7 +20,7 @@
       <th scope="row">Saved on {{trip.creation_time}}</th>
       <td>{{trip.departure_loc}}</td>
       <td>{{trip.arrival_loc}}</td>
-      <td>{{trip.distance_miles}} Miles / {{trip.distance_miles}} KM</td>
+      <td>{{trip.distance_miles}} Miles / {{trip.distance_km}} KM</td>
       <td>{{trip.result}}</td>
     </tr>
   {% endfor %}

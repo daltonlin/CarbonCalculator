@@ -6,16 +6,13 @@ from django.urls import reverse
 import json
 import os.path
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 from .models import User, Trip
 
 
 def index(request):
-
-    #json_data = '/static/calculator/airport_data/data.json'
-    #airports_data = json.loads(json_data)
-    #json_data.close()
 
 
     f_path = os.path.abspath("calculator/static/calculator/airport_data/data.json")
@@ -39,6 +36,34 @@ def profile_view(request, user_name):
         'trips': trips,
     })
 
+
+@csrf_exempt
+@login_required
+def save(request):
+
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    elif request.method == "POST":
+        data = json.loads(request.body)
+
+        trip = Trip(
+        user = request.user,
+        departure_loc = data.get("departure_loc"),
+        arrival_loc = data.get("arrival_loc"),
+        result = data.get("result"),
+        distance_miles = data.get("distance_miles"),
+        distance_km = data.get("distance_km"),
+        )
+        trip.save()
+        return JsonResponse({"message": "Trip saved successfully."}, status=201)
+    else:
+        return JsonResponse({"error": "Oops! Something went wrong"}, status=400)
+
+
+
+def ref_view(request):
+    return render(request, "calculator/references.html")
 
 
 def login_view(request):
