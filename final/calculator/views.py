@@ -5,9 +5,10 @@ from django.shortcuts import render
 from django.urls import reverse
 import json
 import os.path
+from django.contrib.auth.decorators import login_required
 
 
-from .models import User
+from .models import User, Trip
 
 
 def index(request):
@@ -27,6 +28,17 @@ def index(request):
     return render(request, "calculator/index.html", {
         "airports": airports_data,
     })
+
+
+@login_required
+def profile_view(request, user_name):
+    requested_user = User.objects.get(username=user_name)
+    trips = Trip.objects.all().filter(user=requested_user)
+
+    return render(request, "calculator/user.html", {
+        'trips': trips,
+    })
+
 
 
 def login_view(request):
